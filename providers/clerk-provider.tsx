@@ -8,7 +8,7 @@ export default function Provider({ children }: PropsWithChildren<Props>) {
     <ClerkProvider
       afterSignOutUrl="/sign-in"
       signInFallbackRedirectUrl="/"
-      signUpFallbackRedirectUrl="/"
+      signUpForceRedirectUrl="/wizard"
     >
       {children}
     </ClerkProvider>
