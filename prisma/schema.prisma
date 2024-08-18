@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model UserSetting {
+  userId   String @id
+  currency String
+}
+
+model Category {
+  id     String @id @default(uuid())
+  name   String
+  icon   String
+  userId String
+  type   String @default("income")
+
+  createdAt DateTime @default(now())
+
+  @@unique([name, userId, type])
+  @@index([name, userId, type])
+}
+
+model Transaction {
+  id String @id @default(uuid())
+
+  amount       Float
+  description  String
+  userId       String
+  category     String
+  categoryIcon String
+  date         DateTime
+  type         String   @default("income")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MonthHistory {
+  id String @id @default(uuid())
+
+  day     Int
+  month   Int
+  year    Int
+  income  Float
+  expense Float
+  userId  String
+
+  @@unique([day, month, year, userId])
+  @@index([day, month, year, userId])
+}
+
+model YearHistory {
+  id String @id @default(uuid())
+
+  month   Int
+  year    Int
+  income  Float
+  expense Float
+  userId  String
+
+  @@unique([month, year, userId])
+  @@index([month, year, userId])
+}
