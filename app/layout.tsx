@@ -1,8 +1,9 @@
 import "@styles/globals.css";
 
 import type { Metadata } from "next";
+import { Toaster } from "@ui/sonner";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@providers";
+import { ClerkProvider, QueryProvider, ThemeProvider } from "@providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +18,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ClerkProvider>{children}</ClerkProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
+        <body className={inter.className}>
+          <ThemeProvider>
+            <QueryProvider>{children}</QueryProvider>
+
+            <Toaster richColors position="bottom-center" />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

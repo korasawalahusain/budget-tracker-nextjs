@@ -20,8 +20,11 @@
     "paths": {
       "@lib": ["./lib/index"],
       "@styles/*": ["./styles/*"],
+      "@hooks": ["./hooks/index"],
+      "@types": ["./types/index"],
       "@ui/*": ["./components/ui/*"],
       "@actions": ["./actions/index"],
+      "@schemas": ["./schemas/index"],
       "@providers": ["./providers/index"],
       "@components": ["./components/index"]
     }
